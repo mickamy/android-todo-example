@@ -6,6 +6,10 @@ public class Task {
     private String description;
     private boolean completed;
 
+    public Task(String title, String description) {
+        this(title.hashCode() + description.hashCode(), title, description, false);
+    }
+
     public Task(int id, String title, String description, boolean completed) {
         this.id = id;
         this.title = title;
