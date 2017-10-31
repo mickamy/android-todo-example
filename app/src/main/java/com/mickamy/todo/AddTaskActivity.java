@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,9 +31,17 @@ public class AddTaskActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String title = titleEd.getText().toString();
                 String description = descriptionEd.getText().toString();
-                Task task = new Task(title, description);
-                Log.d(TAG, "task create: " + task.toString());
+                createTask(title, description);
             }
         });
+    }
+
+    private void createTask(String title, String description) {
+        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(description)) {
+            Log.d(TAG, "createTask: title or description is empty!");
+            return;
+        }
+        Task created = new Task(title, description);
+        Log.d(TAG, "createTask: " + created.toString());
     }
 }
