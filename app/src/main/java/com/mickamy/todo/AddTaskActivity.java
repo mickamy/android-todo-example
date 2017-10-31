@@ -43,5 +43,6 @@ public class AddTaskActivity extends AppCompatActivity {
         }
         Task created = new Task(title, description);
         TaskStorage.getInstance().add(created);
+        finish();
     }
 }
