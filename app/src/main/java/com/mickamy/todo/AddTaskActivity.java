@@ -42,6 +42,6 @@ public class AddTaskActivity extends AppCompatActivity {
             return;
         }
         Task created = new Task(title, description);
-        Log.d(TAG, "createTask: " + created.toString());
+        TaskStorage.getInstance().add(created);
     }
 }
