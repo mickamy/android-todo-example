@@ -1,6 +1,5 @@
 package com.mickamy.todo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TaskStorage {
@@ -17,7 +16,7 @@ public class TaskStorage {
     private List<Task> tasks;
 
     private TaskStorage() {
-        tasks = new ArrayList<>();
+        tasks = DummyTaskFactory.create(10);
     }
 
     public void add(Task task) {
