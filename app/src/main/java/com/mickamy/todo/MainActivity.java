@@ -18,6 +18,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        configureLayout();
+
+        List<Task> tasks = TaskStorage.getInstance().getAll();
+        Log.d(TAG, "onCreate: " + tasks);
+    }
+
+    private void configureLayout() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -28,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
                 startAddTask();
             }
         });
-        List<Task> tasks = TaskStorage.getInstance().getAll();
-        Log.d(TAG, "onCreate: " + tasks);
     }
 
     @Override
