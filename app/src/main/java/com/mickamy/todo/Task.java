@@ -1,12 +1,17 @@
 package com.mickamy.todo;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class Task extends RealmObject {
+    @PrimaryKey
     private int id;
     private String title;
     private String description;
     private boolean completed;
+
+    public Task() {
+    }
 
     public Task(String title, String description) {
         this(title.hashCode() + description.hashCode(), title, description, false);

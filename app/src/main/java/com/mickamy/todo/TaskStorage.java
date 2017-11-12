@@ -2,6 +2,8 @@ package com.mickamy.todo;
 
 import java.util.List;
 
+import io.realm.Realm;
+
 public class TaskStorage {
 
     private static TaskStorage instance;
@@ -13,17 +15,22 @@ public class TaskStorage {
         return instance;
     }
 
-    private List<Task> tasks;
+    private Realm realm;
 
     private TaskStorage() {
-        tasks = DummyTaskFactory.create(10);
+        realm = Realm.getDefaultInstance();
     }
 
-    public void add(Task task) {
-        tasks.add(task);
+    public void add(final Task task) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.copyToRealm(task);
+            }
+        });
     }
 
     public List<Task> getAll() {
-        return tasks;
+        return realm.where(Task.class).findAll();
     }
 }
