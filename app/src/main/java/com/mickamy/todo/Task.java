@@ -1,6 +1,8 @@
 package com.mickamy.todo;
 
-public class Task {
+import io.realm.RealmObject;
+
+public class Task extends RealmObject {
     private int id;
     private String title;
     private String description;
